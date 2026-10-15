@@ -57,6 +57,9 @@ h1 { font-family: var(--head); font-weight: 800; letter-spacing: -.04em; line-he
 .story-nav a:hover { color: var(--teal); text-decoration: underline; text-underline-offset: .25em; }
 
 .story-intro { max-width: 52rem; margin: 2rem 0 1.15rem; padding: 1.05rem 1.35rem; border-left: 4px solid var(--orange); border-radius: 0 .7rem .7rem 0; background: var(--panel); box-shadow: 0 8px 24px rgb(22 43 58 / 4%); font-size: 1.04rem; }
+.timing-note { display: grid; grid-template-columns: max-content 1fr; align-items: start; gap: .35rem 1rem; margin: 0 0 1.15rem; padding: .9rem 1.15rem; border: 1px solid #d7c88f; border-radius: .7rem; background: #fff7dc; color: #493c24; }
+.timing-note p { max-width: 58rem; margin: 0; font-size: .96rem; }
+.timing-tag { padding-top: .15rem; color: #8b552e; font: 700 .68rem/1.35 var(--head); letter-spacing: .08em; text-transform: uppercase; }
 .story-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin: 0 0 1.5rem; }
 .story-stats > div { display: flex; align-items: center; gap: .8rem; min-height: 4.3rem; padding: .65rem 1rem; border: 1px solid var(--rule); border-radius: .65rem; background: rgb(255 254 250 / 70%); }
 .story-stats strong { color: var(--teal); font: 800 1.65rem/1 var(--head); letter-spacing: -.04em; }
@@ -102,6 +105,7 @@ a { color: var(--line-blue); }
   .dek { font-size: 1.12rem; }
   .story-nav .wrap { gap: .5rem 1rem; }
   .story-nav a { font-size: .78rem; }
+  .timing-note { grid-template-columns: 1fr; gap: .3rem; }
   .story-stats { gap: .45rem; }
   .story-stats > div { align-items: flex-start; flex-direction: column; gap: .35rem; padding: .65rem; }
   .story-stats strong { font-size: 1.4rem; }
