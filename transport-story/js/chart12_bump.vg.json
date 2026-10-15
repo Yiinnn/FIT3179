@@ -1,0 +1,306 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart ranking capital cities by how closely patronage recovered to its 2019 level.",
+  "width": 800,
+  "height": 340,
+  "padding": {
+    "right": 70,
+    "left": 5,
+    "top": 5,
+    "bottom": 5
+  },
+  "data": {
+    "url": "data/bitre_pt_recovery_index.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "index_2018_19": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.mode == 'Total' && datum.city != 'All capital cities'"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "index_2018_19",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "fy"
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "axis": {
+      "labelColor": "#3b4856",
+      "titleColor": "#3b4856"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal",
+          "axis": {
+            "title": "Financial year (July to June)",
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelOverlap": "parity",
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true,
+            "domain": [
+              0.6,
+              8.4
+            ]
+          },
+          "axis": {
+            "title": "Rank (1 = closest to 2018-19)",
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "grid": false,
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "detail": {
+          "field": "city",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "indexof(['Perth','Brisbane','Melbourne'], datum.city) >= 0",
+            "field": "city",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Perth",
+                "Brisbane",
+                "Melbourne"
+              ],
+              "range": [
+                "#1f5fa8",
+                "#2a9d8f",
+                "#9b2c1f"
+              ]
+            },
+            "legend": null
+          },
+          "value": "#c4ccd4"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 90
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal",
+          "axis": {
+            "title": "Financial year (July to June)",
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelOverlap": "parity",
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true,
+            "domain": [
+              0.6,
+              8.4
+            ]
+          },
+          "axis": {
+            "title": "Rank (1 = closest to 2018-19)",
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "grid": false,
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "indexof(['Perth','Brisbane','Melbourne'], datum.city) >= 0",
+            "field": "city",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Perth",
+                "Brisbane",
+                "Melbourne"
+              ],
+              "range": [
+                "#1f5fa8",
+                "#2a9d8f",
+                "#9b2c1f"
+              ]
+            },
+            "legend": null
+          },
+          "value": "#c4ccd4"
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "title": "City"
+          },
+          {
+            "field": "fy",
+            "title": "Year"
+          },
+          {
+            "field": "rank",
+            "title": "Rank"
+          },
+          {
+            "field": "index_2018_19",
+            "title": "Compared with 2018-19",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.fy == '2024-25'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal",
+          "axis": {
+            "title": "Financial year (July to June)",
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelOverlap": "parity",
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true,
+            "domain": [
+              0.6,
+              8.4
+            ]
+          },
+          "axis": {
+            "title": "Rank (1 = closest to 2018-19)",
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "grid": false,
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "text": {
+          "field": "city"
+        },
+        "color": {
+          "condition": {
+            "test": "indexof(['Perth','Brisbane','Melbourne'], datum.city) >= 0",
+            "field": "city",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Perth",
+                "Brisbane",
+                "Melbourne"
+              ],
+              "range": [
+                "#1f5fa8",
+                "#2a9d8f",
+                "#9b2c1f"
+              ]
+            },
+            "legend": null
+          },
+          "value": "#c4ccd4"
+        }
+      }
+    }
+  ]
+}
