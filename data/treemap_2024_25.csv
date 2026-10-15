@@ -1,0 +1,31 @@
+id,parent,name,size,city,mode
+root,,root,,,
+Sydney,root,Sydney,,Sydney,
+Melbourne,root,Melbourne,,Melbourne,
+Brisbane,root,Brisbane,,Brisbane,
+Adelaide,root,Adelaide,,Adelaide,
+Perth,root,Perth,,Perth,
+Hobart,root,Hobart,,Hobart,
+Darwin,root,Darwin,,Darwin,
+Canberra,root,Canberra,,Canberra,
+Sydney|Heavy rail,Sydney,Heavy rail,348.50029466631383,Sydney,Heavy rail
+Sydney|Light rail,Sydney,Light rail,46.94125686152942,Sydney,Light rail
+Sydney|Bus,Sydney,Bus,293.3649250951164,Sydney,Bus
+Sydney|Ferry,Sydney,Ferry,19.74546539974244,Sydney,Ferry
+Melbourne|Heavy rail,Melbourne,Heavy rail,201.531244,Melbourne,Heavy rail
+Melbourne|Light rail,Melbourne,Light rail,160.189326,Melbourne,Light rail
+Melbourne|Bus,Melbourne,Bus,118.48326008333332,Melbourne,Bus
+Brisbane|Heavy rail,Brisbane,Heavy rail,55.36753435708212,Brisbane,Heavy rail
+Brisbane|Bus,Brisbane,Bus,98.91404,Brisbane,Bus
+Brisbane|Ferry,Brisbane,Ferry,7.360554,Brisbane,Ferry
+Adelaide|Heavy rail,Adelaide,Heavy rail,14.646651,Adelaide,Heavy rail
+Adelaide|Light rail,Adelaide,Light rail,9.011665,Adelaide,Light rail
+Adelaide|Bus,Adelaide,Bus,45.930664,Adelaide,Bus
+Perth|Heavy rail,Perth,Heavy rail,61.903744,Perth,Heavy rail
+Perth|Bus,Perth,Bus,85.878594,Perth,Bus
+Perth|Ferry,Perth,Ferry,0.935158,Perth,Ferry
+Hobart|Bus,Hobart,Bus,6.466976744186047,Hobart,Bus
+Hobart|Ferry,Hobart,Ferry,0.25,Hobart,Ferry
+Darwin|Bus,Darwin,Bus,4.646,Darwin,Bus
+Canberra|Light rail,Canberra,Light rail,4.17175,Canberra,Light rail
+Canberra|Bus,Canberra,Bus,16.41025,Canberra,Bus

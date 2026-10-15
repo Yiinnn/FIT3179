@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map showing capital city public transport trips and recovery compared with 2019.",
+  "params": [{ "name": "focusState", "value": "ALL" }],
+  "width": 800,
+  "height": 450,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.json",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e5ebf0",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.4
+      }
+    },
+    {
+      "data": {
+        "url": "data/city_snapshot_map.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "trips_2024_25": "number",
+            "recovery_pct_2024_25": "number",
+            "lon": "number",
+            "lat": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.88,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.6
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "trips_2024_25",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              800
+            ],
+            "range": [
+              150,
+              3200
+            ]
+          },
+          "legend": {
+            "title": "Trips in 2024-25 (millions)",
+            "orient": "bottom-left",
+            "titleFontSize": 11,
+            "labelFontSize": 10
+          }
+        },
+        "color": {
+          "field": "recovery_pct_2024_25",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              75,
+              100,
+              110
+            ],
+            "range": [
+              "#9b2c1f",
+              "#f2f2f2",
+              "#2a6fb0"
+            ],
+            "interpolate": "lab",
+            "clamp": true
+          },
+          "legend": {
+            "title": "Recovery vs 2018-19",
+            "orient": "bottom-right",
+            "gradientLength": 150,
+            "titleFontSize": 11,
+            "labelFontSize": 10
+          }
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "type": "nominal",
+            "title": "Capital city"
+          },
+          {
+            "field": "trips_2024_25",
+            "type": "quantitative",
+            "title": "Public transport trips (millions)",
+            "format": ".1f"
+          },
+          {
+            "field": "recovery_pct_2024_25",
+            "type": "quantitative",
+            "title": "Compared with 2018-19 (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/australia_states.json",
+        "format": { "type": "topojson", "feature": "states" }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_CODE",
+          "from": {
+            "data": {
+              "url": "data/map_state_2021.csv",
+              "format": { "type": "csv", "parse": { "ste_code": "number" } }
+            },
+            "key": "ste_code",
+            "fields": ["state"]
+          }
+        },
+        { "filter": "focusState !== 'ALL' && datum.state === focusState" }
+      ],
+      "mark": { "type": "geoshape", "fill": "#83c8bf", "stroke": "#1b2a38", "strokeWidth": 2.5, "opacity": 0.24 }
+    },
+    {
+      "data": {
+        "url": "data/city_snapshot_map.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lon": "number",
+            "lat": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 11,
+        "dy": -8,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1b2a38"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "city",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

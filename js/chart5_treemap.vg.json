@@ -1,0 +1,194 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap showing public transport trips by city and mode in 2025.",
+  "width": 700,
+  "height": 420,
+  "padding": 2,
+  "autosize": "none",
+  "data": [
+    {
+      "name": "tree",
+      "url": "data/treemap_2024_25.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "size": "number"
+        }
+      },
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "datum.parent === '' ? null : datum.parent",
+          "as": "parent"
+        },
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "treemap",
+          "field": "size",
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "round": true,
+          "method": "squarify",
+          "paddingInner": 2,
+          "paddingOuter": 3,
+          "paddingTop": 22,
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cities",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth == 1"
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth == 2"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Heavy rail",
+        "Bus",
+        "Light rail",
+        "Ferry"
+      ],
+      "range": [
+        "#1f5fa8",
+        "#7fa8d1",
+        "#2a9d8f",
+        "#e0a030"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "orient": "bottom",
+      "direction": "horizontal"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "cities"
+      },
+      "encode": {
+        "enter": {
+          "fill": {
+            "value": "#e3e9ef"
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "stroke": {
+            "value": "#ffffff"
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "mode"
+          },
+          "tooltip": {
+            "signal": "{'City': datum.city, 'Mode': datum.mode, 'Trips (millions)': format(datum.size, '.0f')}"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "cities"
+      },
+      "encode": {
+        "enter": {
+          "font": {
+            "value": "Archivo"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#1b2a38"
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 5"
+          },
+          "y": {
+            "signal": "datum.y0 + 15"
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0 > 60) ? datum.name : ''"
+          }
+        }
+      }
+    }
+  ]
+}

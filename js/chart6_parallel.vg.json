@@ -1,0 +1,335 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Parallel coordinates showing how workers travelled to work in each state in 2021.",
+  "width": 800,
+  "height": 320,
+  "padding": {
+    "left": 5,
+    "right": 60,
+    "top": 5,
+    "bottom": 5
+  },
+  "data": {
+    "url": "data/abs_commute_by_state_2021.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share_of_employed_pct": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.state != 'AUS' && indexof(['Public transport','Car','Walk / cycle','Worked at home'], datum.mode_group) >= 0"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "share_of_employed_pct",
+          "as": "v"
+        }
+      ],
+      "groupby": [
+        "state",
+        "mode_group"
+      ]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "min",
+          "field": "v",
+          "as": "lo"
+        },
+        {
+          "op": "max",
+          "field": "v",
+          "as": "hi"
+        }
+      ],
+      "groupby": [
+        "mode_group"
+      ]
+    },
+    {
+      "calculate": "(datum.v - datum.lo) / (datum.hi - datum.lo)",
+      "as": "norm"
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "axis": {
+      "labelColor": "#3b4856"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#c9d2da",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "mode_group",
+          "type": "ordinal",
+          "sort": [
+            "Public transport",
+            "Car",
+            "Walk / cycle",
+            "Worked at home"
+          ],
+          "scale": {
+            "padding": 0.1
+          },
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelFontSize": 12,
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 8,
+            "labelExpr": "datum.label == 'Public transport' ? 'Transit' : datum.label == 'Walk / cycle' ? 'Walk / cycle' : datum.label == 'Worked at home' ? 'At home' : datum.label"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {
+          "field": "mode_group",
+          "type": "ordinal",
+          "sort": [
+            "Public transport",
+            "Car",
+            "Walk / cycle",
+            "Worked at home"
+          ],
+          "scale": {
+            "padding": 0.1
+          },
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelFontSize": 12,
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 8,
+            "labelExpr": "datum.label == 'Public transport' ? 'Transit' : datum.label == 'Walk / cycle' ? 'Walk / cycle' : datum.label == 'Worked at home' ? 'At home' : datum.label"
+          }
+        },
+        "y": {
+          "field": "norm",
+          "type": "quantitative",
+          "axis": null
+        },
+        "detail": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "scheme": "dark2"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "mode_group",
+            "title": "Group"
+          },
+          {
+            "field": "v",
+            "title": "Share of workers (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.mode_group == 'Worked at home'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "mode_group",
+          "type": "ordinal",
+          "sort": [
+            "Public transport",
+            "Car",
+            "Walk / cycle",
+            "Worked at home"
+          ],
+          "scale": {
+            "padding": 0.1
+          },
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelFontSize": 12,
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 8,
+            "labelExpr": "datum.label == 'Public transport' ? 'Transit' : datum.label == 'Walk / cycle' ? 'Walk / cycle' : datum.label == 'Worked at home' ? 'At home' : datum.label"
+          }
+        },
+        "y": {
+          "field": "norm",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "scheme": "dark2"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "hi",
+              "as": "hi"
+            }
+          ],
+          "groupby": [
+            "mode_group"
+          ]
+        },
+        {
+          "calculate": "format(datum.hi,'.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -6,
+        "fontSize": 11,
+        "color": "#5b6b7a"
+      },
+      "encoding": {
+        "x": {
+          "field": "mode_group",
+          "type": "ordinal",
+          "sort": [
+            "Public transport",
+            "Car",
+            "Walk / cycle",
+            "Worked at home"
+          ],
+          "scale": {
+            "padding": 0.1
+          },
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelFontSize": 12,
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 8,
+            "labelExpr": "datum.label == 'Public transport' ? 'Transit' : datum.label == 'Walk / cycle' ? 'Walk / cycle' : datum.label == 'Worked at home' ? 'At home' : datum.label"
+          }
+        },
+        "y": {
+          "datum": 1
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "lo",
+              "as": "lo"
+            }
+          ],
+          "groupby": [
+            "mode_group"
+          ]
+        },
+        {
+          "calculate": "format(datum.lo,'.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 12,
+        "fontSize": 11,
+        "color": "#5b6b7a"
+      },
+      "encoding": {
+        "x": {
+          "field": "mode_group",
+          "type": "ordinal",
+          "sort": [
+            "Public transport",
+            "Car",
+            "Walk / cycle",
+            "Worked at home"
+          ],
+          "scale": {
+            "padding": 0.1
+          },
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelFontSize": 12,
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 8,
+            "labelExpr": "datum.label == 'Public transport' ? 'Transit' : datum.label == 'Walk / cycle' ? 'Walk / cycle' : datum.label == 'Worked at home' ? 'At home' : datum.label"
+          }
+        },
+        "y": {
+          "datum": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

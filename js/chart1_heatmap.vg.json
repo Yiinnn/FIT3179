@@ -1,0 +1,254 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap showing annual public transport trips in each capital city compared with its 2019 level.",
+  "width": "container",
+  "height": 272,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "padding": {
+    "top": 36,
+    "left": 4,
+    "right": 8,
+    "bottom": 4
+  },
+  "data": {
+    "url": "data/bitre_pt_recovery_index.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "index_2018_19": "number",
+        "trips_million": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.mode == 'Total' && datum.city != 'All capital cities'"
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "axis": {
+      "labelColor": "#3b4856",
+      "titleColor": "#3b4856",
+      "labelFontSize": 12
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal",
+          "axis": {
+            "title": "Financial year (July to June)",
+            "titleFontSize": 12,
+            "titleFontWeight": "normal",
+            "titlePadding": 10,
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelOverlap": "parity",
+            "ticks": false,
+            "domain": false,
+            "orient": "bottom"
+          }
+        },
+        "y": {
+          "field": "city",
+          "type": "ordinal",
+          "sort": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane",
+            "Perth",
+            "Adelaide",
+            "Canberra",
+            "Hobart",
+            "Darwin"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelPadding": 8
+          }
+        },
+        "color": {
+          "field": "index_2018_19",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              30,
+              100,
+              110
+            ],
+            "range": [
+              "#9b2c1f",
+              "#f2f2f2",
+              "#2a6fb0"
+            ],
+            "interpolate": "lab",
+            "clamp": true
+          },
+          "legend": {
+            "title": "Trips compared with 2018-19 (100 = same as then)",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 280,
+            "gradientThickness": 10,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal",
+            "labelFontSize": 11,
+            "values": [
+              40,
+              60,
+              80,
+              100
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "type": "nominal",
+            "title": "City"
+          },
+          {
+            "field": "fy",
+            "type": "ordinal",
+            "title": "Financial year"
+          },
+          {
+            "field": "trips_million",
+            "type": "quantitative",
+            "title": "Trips (millions)",
+            "format": ".1f"
+          },
+          {
+            "field": "index_2018_19",
+            "type": "quantitative",
+            "title": "Compared with 2018-19",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "city",
+          "type": "ordinal",
+          "sort": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane",
+            "Perth",
+            "Adelaide",
+            "Canberra",
+            "Hobart",
+            "Darwin"
+          ]
+        },
+        "text": {
+          "field": "index_2018_19",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.index_2018_19 < 62 || datum.index_2018_19 > 103",
+            "value": "#ffffff"
+          },
+          "value": "#1b2a38"
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "type": "nominal",
+            "title": "City"
+          },
+          {
+            "field": "fy",
+            "type": "ordinal",
+            "title": "Financial year"
+          },
+          {
+            "field": "trips_million",
+            "type": "quantitative",
+            "title": "Trips (millions)",
+            "format": ".1f"
+          },
+          {
+            "field": "index_2018_19",
+            "type": "quantitative",
+            "title": "Compared with 2018-19",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "fy": "2020-21",
+            "city": "Sydney",
+            "note": "Lockdown years"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -22,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#9b2c1f"
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal",
+          "bandPosition": 1
+        },
+        "y": {
+          "field": "city",
+          "type": "ordinal",
+          "sort": [
+            "Sydney",
+            "Melbourne",
+            "Brisbane",
+            "Perth",
+            "Adelaide",
+            "Canberra",
+            "Hobart",
+            "Darwin"
+          ]
+        },
+        "text": {
+          "field": "note"
+        }
+      }
+    }
+  ]
+}
