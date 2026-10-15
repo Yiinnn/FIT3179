@@ -10,10 +10,11 @@
   },
   "hconcat": [
     {
-      "width": 560,
-      "height": 450,
+      "width": 500,
+      "height": 390,
       "projection": {
-        "type": "equalEarth"
+        "type": "mercator",
+    "center": [134, -27]
       },
       "layer": [
         {
@@ -125,8 +126,8 @@
       ]
     },
     {
-      "width": 105,
-      "height": 105,
+      "width": 96,
+      "height": 96,
       "data": {
         "values": [
           {

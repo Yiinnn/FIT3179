@@ -1,11 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Proportional symbol map showing capital city public transport trips and recovery compared with 2019.",
-  "params": [{ "name": "focusState", "value": "ALL" }],
-  "width": 800,
-  "height": 450,
+  "params": [
+    { "name": "focusState", "value": "ALL" },
+    { "name": "modeSelect", "value": "Total" }
+  ],
+  "width": 700,
+  "height": 390,
   "projection": {
-    "type": "equalEarth"
+    "type": "mercator",
+    "center": [134, -27]
   },
   "config": {
     "view": {
@@ -31,17 +35,27 @@
     },
     {
       "data": {
-        "url": "data/city_snapshot_map.csv",
+        "url": "data/bitre_pt_trips_by_city_mode.csv",
         "format": {
           "type": "csv",
-          "parse": {
-            "trips_2024_25": "number",
-            "recovery_pct_2024_25": "number",
-            "lon": "number",
-            "lat": "number"
-          }
+          "parse": { "trips_million": "number" }
         }
       },
+      "transform": [
+        { "filter": "datum.fy === '2024-25' && datum.city !== 'All capital cities' && datum.mode === modeSelect" },
+        { "filter": "isValid(datum.trips_million)" },
+        {
+          "lookup": "city",
+          "from": {
+            "data": {
+              "url": "data/city_snapshot_map.csv",
+              "format": { "type": "csv", "parse": { "recovery_pct_2024_25": "number" } }
+            },
+            "key": "city",
+            "fields": ["lon", "lat", "recovery_pct_2024_25"]
+          }
+        }
+      ],
       "mark": {
         "type": "circle",
         "opacity": 0.88,
@@ -58,7 +72,7 @@
           "type": "quantitative"
         },
         "size": {
-          "field": "trips_2024_25",
+          "field": "trips_million",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -109,7 +123,12 @@
             "title": "Capital city"
           },
           {
-            "field": "trips_2024_25",
+            "field": "mode",
+            "type": "nominal",
+            "title": "Transport mode"
+          },
+          {
+            "field": "trips_million",
             "type": "quantitative",
             "title": "Public transport trips (millions)",
             "format": ".1f"
