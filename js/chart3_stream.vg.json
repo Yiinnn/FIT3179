@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Streamgraph showing public transport trips by mode across the capital cities from 1977 to 2025.",
-  "width": 800,
-  "height": 300,
+  "width": "container",
+  "height": 420,
   "data": {
     "url": "data/bitre_pt_trips_by_city_mode.csv",
     "format": {
@@ -22,7 +22,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'Source Serif 4', Georgia, serif",
     "axis": {
       "labelColor": "#3b4856",
       "titleColor": "#3b4856"
@@ -51,8 +51,14 @@
         "y": {
           "field": "trips_million",
           "type": "quantitative",
-          "stack": "center",
-          "axis": null
+          "stack": "zero",
+          "axis": {
+            "title": "Trips (millions)",
+            "grid": true,
+            "tickCount": 5,
+            "labelFontSize": 10,
+            "titleFontSize": 11
+          }
         },
         "color": {
           "field": "mode",
@@ -65,10 +71,10 @@
               "Ferry"
             ],
             "range": [
-              "#1f5fa8",
-              "#7fa8d1",
-              "#2a9d8f",
-              "#e0a030"
+              "#2166ac",
+              "#92c5de",
+              "#f4a582",
+              "#b35806"
             ]
           },
           "legend": {
@@ -109,7 +115,7 @@
           4,
           3
         ],
-        "color": "#9b2c1f"
+        "color": "#b35806"
       },
       "encoding": {
         "x": {
@@ -133,7 +139,7 @@
         "dx": 6,
         "dy": -128,
         "fontWeight": 600,
-        "color": "#9b2c1f",
+        "color": "#b35806",
         "fontSize": 12
       },
       "encoding": {
@@ -146,5 +152,9 @@
         }
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

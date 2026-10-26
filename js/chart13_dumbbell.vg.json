@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Dumbbell chart comparing the share of workers who drove to work in each capital city and the rest of its state in 2021.",
-  "width": 800,
-  "height": 300,
+  "width": "container",
+  "height": 420,
   "data": {
     "url": "data/abs_drivers_capital_vs_rest_2021.csv",
     "format": {
@@ -17,7 +17,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'Source Serif 4', Georgia, serif",
     "axis": {
       "labelColor": "#3b4856",
       "titleColor": "#3b4856"
@@ -66,7 +66,8 @@
             "title": "Employed people who drove to work, 2021 (%)",
             "titleFontSize": 12,
             "titleFontWeight": "normal",
-            "grid": false
+            "grid": false,
+            "tickCount": 5
           }
         },
         "x2": {
@@ -121,6 +122,10 @@
           "type": "quantitative",
           "scale": {
             "zero": false
+          },
+          "axis": {
+            "tickCount": 5,
+            "grid": true
           }
         },
         "color": {
@@ -156,5 +161,9 @@
         ]
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

@@ -1,46 +1,118 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Australian Statistical Area Level 2 map of single method public transport commuters in the 2021 Census.",
-  "params": [{ "name": "focusState", "value": "ALL" }],
-  "width": 690,
-  "height": 430,
-  "projection": { "type": "mercator", "center": [134, -27] },
-  "config": {
-    "view": { "stroke": null },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif"
-  },
-  "data": { "url": "data/abs_sa2_public_transport_2021.geojson", "format": { "type": "json", "property": "features" } },
-  "mark": { "type": "geoshape", "stroke": "#f5f7f9", "strokeWidth": 0.35 },
-  "encoding": {
-    "color": {
-      "field": "properties.pt_mode_only_share_pct",
-      "type": "quantitative",
-      "title": "Single mode public transport commuters (%)",
-      "scale": {
-        "domain": [0, 25],
-        "range": ["#e6eff5", "#17608a"],
-        "clamp": true
-      },
-      "legend": {
-        "orient": "bottom",
-        "gradientLength": 270,
-        "titleFontSize": 12,
-        "labelFontSize": 11
-      }
-    },
-    "opacity": {
-      "condition": {
-        "test": "focusState === 'ALL' || datum.properties.state === focusState",
-        "value": 1
-      },
-      "value": 0.22
-    },
-    "tooltip": [
-      { "field": "properties.sa2_name", "type": "nominal", "title": "Local area" },
-      { "field": "properties.state_name", "type": "nominal", "title": "State or territory" },
-      { "field": "properties.pt_mode_only_count", "type": "quantitative", "title": "Single mode public transport commuters", "format": ",.0f" },
-      { "field": "properties.employed_total", "type": "quantitative", "title": "Employed people", "format": ",.0f" },
-      { "field": "properties.pt_mode_only_share_pct", "type": "quantitative", "title": "Share of employed people", "format": ".1f" }
+  "description": "Australian Statistical Area Level 2 map of single method public transport commuters in the 2021 Census. Capital-area inset panels show metropolitan SA2 detail for Sydney, Melbourne, Brisbane and Perth.",
+  "params": [
+    {
+      "name": "focusState",
+      "value": "ALL"
+    }
+  ],
+  "projection": {
+    "type": "conicEqualArea",
+    "center": [
+      0,
+      -27
+    ],
+    "rotate": [
+      132,
+      0,
+      0
+    ],
+    "parallels": [
+      -18,
+      -36
     ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "'Source Serif 4', Georgia, serif"
+  },
+  "width": "container",
+  "height": 560,
+  "data": {
+    "url": "data/abs_sa2_public_transport_2021.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#f5f7f9",
+        "strokeWidth": 0.42,
+        "clip": true
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.pt_mode_only_share_pct",
+          "type": "quantitative",
+          "title": "Public transport commuters (%)",
+          "scale": {
+            "domain": [
+              0,
+              25
+            ],
+            "range": [
+              "#e6eff5",
+              "#17608a"
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "orient": "bottom",
+            "gradientLength": 270,
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "titleLimit": 600,
+            "labelLimit": 100
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "focusState === 'ALL' || datum.properties.state === focusState",
+            "value": 1
+          },
+          "value": 0.22
+        },
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "Local area"
+          },
+          {
+            "field": "properties.state_name",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "properties.pt_mode_only_count",
+            "type": "quantitative",
+            "title": "Single mode public transport commuters",
+            "format": ",.0f"
+          },
+          {
+            "field": "properties.employed_total",
+            "type": "quantitative",
+            "title": "Employed people",
+            "format": ",.0f"
+          },
+          {
+            "field": "properties.pt_mode_only_share_pct",
+            "type": "quantitative",
+            "title": "Share of employed people",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

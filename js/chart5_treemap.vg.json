@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Treemap showing public transport trips by city and mode in 2025.",
-  "width": 700,
-  "height": 420,
+  "width": 850,
+  "height": 510,
   "padding": 2,
   "autosize": "none",
   "data": [
@@ -66,6 +66,23 @@
         {
           "type": "filter",
           "expr": "datum.depth == 2"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "size"
+          ],
+          "as": [
+            "total_trips"
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.size / datum.total_trips * 100",
+          "as": "share_pct"
         }
       ]
     }
@@ -81,10 +98,10 @@
         "Ferry"
       ],
       "range": [
-        "#1f5fa8",
-        "#7fa8d1",
-        "#2a9d8f",
-        "#e0a030"
+        "#2166ac",
+        "#6b8fb3",
+        "#b35806",
+        "#e69f00"
       ]
     }
   ],
@@ -92,7 +109,8 @@
     {
       "fill": "color",
       "orient": "bottom",
-      "direction": "horizontal"
+      "direction": "horizontal",
+      "title": "Transport mode"
     }
   ],
   "marks": [
@@ -165,7 +183,7 @@
       "encode": {
         "enter": {
           "font": {
-            "value": "Archivo"
+            "value": "Source Serif 4"
           },
           "fontSize": {
             "value": 13
@@ -186,6 +204,48 @@
           },
           "text": {
             "signal": "(datum.x1 - datum.x0 > 60) ? datum.name : ''"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "font": {
+            "value": "Source Serif 4"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#162b3a"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "top"
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 5"
+          },
+          "y": {
+            "signal": "datum.y0 + 5"
+          },
+          "text": {
+            "signal": "(datum.x1-datum.x0>76 && datum.y1-datum.y0>42) ? datum.mode + '\\n' + format(datum.size, '.0f') + 'm · ' + format(datum.share_pct, '.1f') + '%' : ''"
+          },
+          "limit": {
+            "signal": "datum.x1-datum.x0-8"
           }
         }
       }

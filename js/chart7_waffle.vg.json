@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Waffle chart showing the work travel choices of 100 employed Australians in 2021.",
-  "width": 300,
-  "height": 300,
+  "width": "container",
+  "height": 400,
   "data": {
     "url": "data/waffle_2021.csv"
   },
@@ -10,7 +10,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif"
+    "font": "'Source Serif 4', Georgia, serif"
   },
   "mark": {
     "type": "rect",
@@ -42,12 +42,12 @@
           "Other (2)"
         ],
         "range": [
-          "#5b6b7a",
-          "#2a9d8f",
-          "#c9d2da",
-          "#1f5fa8",
-          "#e0a030",
-          "#9b2c1f"
+          "#52616b",
+          "#b35806",
+          "#d6dbe0",
+          "#2166ac",
+          "#f4a582",
+          "#8c969d"
         ]
       },
       "legend": {
@@ -64,5 +64,9 @@
         "title": "Group"
       }
     ]
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

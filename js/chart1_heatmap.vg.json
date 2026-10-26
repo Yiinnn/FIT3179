@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Heatmap showing annual public transport trips in each capital city compared with its 2019 level.",
   "width": "container",
-  "height": 272,
+  "height": 400,
   "autosize": {
     "type": "fit",
     "contains": "padding"
@@ -32,7 +32,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'Source Serif 4', Georgia, serif",
     "axis": {
       "labelColor": "#3b4856",
       "titleColor": "#3b4856",
@@ -93,18 +93,18 @@
               110
             ],
             "range": [
-              "#9b2c1f",
+              "#b35806",
               "#f2f2f2",
-              "#2a6fb0"
+              "#2166ac"
             ],
             "interpolate": "lab",
             "clamp": true
           },
           "legend": {
-            "title": "Trips compared with 2018-19 (100 = same as then)",
+            "title": "Trips vs 2018–19 (index; 100 = baseline)",
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 280,
+            "gradientLength": 340,
             "gradientThickness": 10,
             "titleFontSize": 12,
             "titleFontWeight": "normal",
@@ -114,7 +114,8 @@
               60,
               80,
               100
-            ]
+            ],
+            "titleLimit": 600
           }
         },
         "tooltip": [
@@ -174,11 +175,7 @@
           "format": ".0f"
         },
         "color": {
-          "condition": {
-            "test": "datum.index_2018_19 < 62 || datum.index_2018_19 > 103",
-            "value": "#ffffff"
-          },
-          "value": "#1b2a38"
+          "value": "#162b3a"
         },
         "tooltip": [
           {
@@ -204,7 +201,12 @@
             "format": ".0f"
           }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.city == 'Melbourne' && datum.fy == '2020-21'"
+        }
+      ]
     },
     {
       "data": {
@@ -223,7 +225,7 @@
         "dy": -22,
         "fontSize": 12,
         "fontWeight": 600,
-        "color": "#9b2c1f"
+        "color": "#b35806"
       },
       "encoding": {
         "x": {

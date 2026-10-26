@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bump chart ranking capital cities by how closely patronage recovered to its 2019 level.",
-  "width": 800,
-  "height": 340,
+  "width": "container",
+  "height": 420,
   "padding": {
     "right": 70,
-    "left": 5,
+    "left": 120,
     "top": 5,
     "bottom": 5
   },
@@ -21,6 +21,9 @@
   "transform": [
     {
       "filter": "datum.mode == 'Total' && datum.city != 'All capital cities'"
+    },
+    {
+      "filter": "datum.fy != '2018-19'"
     },
     {
       "window": [
@@ -44,7 +47,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'Source Serif 4', Georgia, serif",
     "axis": {
       "labelColor": "#3b4856",
       "titleColor": "#3b4856"
@@ -94,11 +97,13 @@
               7,
               8
             ],
-            "grid": false,
+            "grid": true,
             "ticks": false,
             "domain": false,
             "titleFontSize": 12,
-            "titleFontWeight": "normal"
+            "titleFontWeight": "normal",
+            "labels": false,
+            "titlePadding": 50
           }
         },
         "detail": {
@@ -117,9 +122,9 @@
                 "Melbourne"
               ],
               "range": [
-                "#1f5fa8",
-                "#2a9d8f",
-                "#9b2c1f"
+                "#2166ac",
+                "#b35806",
+                "#2166ac"
               ]
             },
             "legend": null
@@ -170,11 +175,13 @@
               7,
               8
             ],
-            "grid": false,
+            "grid": true,
             "ticks": false,
             "domain": false,
             "titleFontSize": 12,
-            "titleFontWeight": "normal"
+            "titleFontWeight": "normal",
+            "labels": false,
+            "titlePadding": 15
           }
         },
         "color": {
@@ -189,9 +196,9 @@
                 "Melbourne"
               ],
               "range": [
-                "#1f5fa8",
-                "#2a9d8f",
-                "#9b2c1f"
+                "#2166ac",
+                "#b35806",
+                "#2166ac"
               ]
             },
             "legend": null
@@ -222,15 +229,16 @@
     {
       "transform": [
         {
-          "filter": "datum.fy == '2024-25'"
+          "filter": "datum.fy === '2014-15'"
         }
       ],
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 10,
+        "align": "right",
+        "dx": -12,
         "fontSize": 12,
-        "fontWeight": 600
+        "fontWeight": 600,
+        "dy": 0
       },
       "encoding": {
         "x": {
@@ -269,11 +277,13 @@
               7,
               8
             ],
-            "grid": false,
+            "grid": true,
             "ticks": false,
             "domain": false,
             "titleFontSize": 12,
-            "titleFontWeight": "normal"
+            "titleFontWeight": "normal",
+            "labels": false,
+            "titlePadding": 15
           }
         },
         "text": {
@@ -291,9 +301,95 @@
                 "Melbourne"
               ],
               "range": [
-                "#1f5fa8",
-                "#2a9d8f",
-                "#9b2c1f"
+                "#2166ac",
+                "#b35806",
+                "#2166ac"
+              ]
+            },
+            "legend": null
+          },
+          "value": "#c4ccd4"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.fy === '2024-25'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "dy": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "ordinal",
+          "axis": {
+            "title": "Financial year (July to June)",
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelOverlap": "parity",
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal"
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true,
+            "domain": [
+              0.6,
+              8.4
+            ]
+          },
+          "axis": {
+            "title": "Rank (1 = closest to 2018-19)",
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "grid": true,
+            "ticks": false,
+            "domain": false,
+            "titleFontSize": 12,
+            "titleFontWeight": "normal",
+            "labels": false,
+            "titlePadding": 15
+          }
+        },
+        "text": {
+          "field": "city"
+        },
+        "color": {
+          "condition": {
+            "test": "indexof(['Perth','Brisbane','Melbourne'], datum.city) >= 0",
+            "field": "city",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Perth",
+                "Brisbane",
+                "Melbourne"
+              ],
+              "range": [
+                "#2166ac",
+                "#b35806",
+                "#2166ac"
               ]
             },
             "legend": null
@@ -302,5 +398,9 @@
         }
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

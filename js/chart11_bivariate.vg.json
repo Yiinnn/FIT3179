@@ -1,20 +1,37 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Map comparing public transport commuting and working from home shares in each state in 2021.",
-  "params": [{ "name": "focusState", "value": "ALL" }],
+  "params": [
+    {
+      "name": "focusState",
+      "value": "ALL"
+    }
+  ],
   "config": {
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif"
+    "font": "'Source Serif 4', Georgia, serif"
   },
   "hconcat": [
     {
-      "width": 500,
-      "height": 390,
+      "width": 700,
+      "height": 530,
       "projection": {
-        "type": "mercator",
-    "center": [134, -27]
+        "type": "conicEqualArea",
+        "center": [
+          0,
+          -27
+        ],
+        "rotate": [
+          132,
+          0,
+          0
+        ],
+        "parallels": [
+          -18,
+          -36
+        ]
       },
       "layer": [
         {
@@ -57,11 +74,17 @@
           },
           "encoding": {
             "stroke": {
-              "condition": { "test": "focusState === datum.state", "value": "#1b2a38" },
+              "condition": {
+                "test": "focusState === datum.state",
+                "value": "#1b2a38"
+              },
               "value": "#ffffff"
             },
             "strokeWidth": {
-              "condition": { "test": "focusState === datum.state", "value": 3 },
+              "condition": {
+                "test": "focusState === datum.state",
+                "value": 3
+              },
               "value": 1.5
             },
             "color": {
@@ -92,11 +115,7 @@
           "data": {
             "url": "data/map_state_2021.csv"
           },
-          "transform": [
-            {
-              "filter": "datum.state != 'ACT'"
-            }
-          ],
+          "transform": [],
           "mark": {
             "type": "text",
             "fontSize": 13,
@@ -115,65 +134,61 @@
               "field": "state"
             },
             "color": {
-              "condition": {
-                "test": "datum.wfh_cls + datum.pt_cls >= 3",
-                "value": "#ffffff"
-              },
-              "value": "#1b2a38"
+              "value": "#162b3a"
             }
           }
         }
       ]
     },
     {
-      "width": 96,
-      "height": 96,
+      "width": 122,
+      "height": 122,
       "data": {
         "values": [
           {
             "w": 0,
             "p": 0,
-            "hex": "#e8e8e8"
+            "hex": "#f1f1f1"
           },
           {
             "w": 1,
             "p": 0,
-            "hex": "#e4acac"
+            "hex": "#d8dce6"
           },
           {
             "w": 2,
             "p": 0,
-            "hex": "#c85a5a"
+            "hex": "#c2cfe0"
           },
           {
             "w": 0,
             "p": 1,
-            "hex": "#b0d5df"
+            "hex": "#c5d9e4"
           },
           {
             "w": 1,
             "p": 1,
-            "hex": "#ad9ea5"
+            "hex": "#aabccf"
           },
           {
             "w": 2,
             "p": 1,
-            "hex": "#985356"
+            "hex": "#8fa9c2"
           },
           {
             "w": 0,
             "p": 2,
-            "hex": "#64acbe"
+            "hex": "#7ea7bb"
           },
           {
             "w": 1,
             "p": 2,
-            "hex": "#627f8c"
+            "hex": "#6d8fae"
           },
           {
             "w": 2,
             "p": 2,
-            "hex": "#574249"
+            "hex": "#4f7293"
           }
         ]
       },
@@ -187,7 +202,7 @@
           "field": "w",
           "type": "ordinal",
           "axis": {
-            "title": "More worked at home →",
+            "title": "Work from home: <15, 15–<25, 25%+",
             "labels": false,
             "ticks": false,
             "domain": false,
@@ -200,7 +215,7 @@
           "type": "ordinal",
           "sort": "descending",
           "axis": {
-            "title": "More public transport →",
+            "title": "Public transport: <3, 3–<5, 5%+",
             "labels": false,
             "ticks": false,
             "domain": false,
@@ -217,5 +232,5 @@
       }
     }
   ],
-  "spacing": 16
+  "spacing": 18
 }

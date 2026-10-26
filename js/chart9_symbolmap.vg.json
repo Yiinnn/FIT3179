@@ -2,20 +2,38 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Proportional symbol map showing capital city public transport trips and recovery compared with 2019.",
   "params": [
-    { "name": "focusState", "value": "ALL" },
-    { "name": "modeSelect", "value": "Total" }
+    {
+      "name": "focusState",
+      "value": "ALL"
+    },
+    {
+      "name": "modeSelect",
+      "value": "Total"
+    }
   ],
-  "width": 700,
-  "height": 390,
+  "width": "container",
+  "height": 560,
   "projection": {
-    "type": "mercator",
-    "center": [134, -27]
+    "type": "conicEqualArea",
+    "center": [
+      0,
+      -27
+    ],
+    "rotate": [
+      132,
+      0,
+      0
+    ],
+    "parallels": [
+      -18,
+      -36
+    ]
   },
   "config": {
     "view": {
       "stroke": null
     },
-    "font": "Archivo, 'Helvetica Neue', Arial, sans-serif"
+    "font": "'Source Serif 4', Georgia, serif"
   },
   "layer": [
     {
@@ -28,7 +46,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#e5ebf0",
+        "fill": "#d5dde3",
         "stroke": "#ffffff",
         "strokeWidth": 1.4
       }
@@ -38,21 +56,36 @@
         "url": "data/bitre_pt_trips_by_city_mode.csv",
         "format": {
           "type": "csv",
-          "parse": { "trips_million": "number" }
+          "parse": {
+            "trips_million": "number"
+          }
         }
       },
       "transform": [
-        { "filter": "datum.fy === '2024-25' && datum.city !== 'All capital cities' && datum.mode === modeSelect" },
-        { "filter": "isValid(datum.trips_million)" },
+        {
+          "filter": "datum.fy === '2024-25' && datum.city !== 'All capital cities' && datum.mode === modeSelect"
+        },
+        {
+          "filter": "isValid(datum.trips_million)"
+        },
         {
           "lookup": "city",
           "from": {
             "data": {
               "url": "data/city_snapshot_map.csv",
-              "format": { "type": "csv", "parse": { "recovery_pct_2024_25": "number" } }
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "recovery_pct_2024_25": "number"
+                }
+              }
             },
             "key": "city",
-            "fields": ["lon", "lat", "recovery_pct_2024_25"]
+            "fields": [
+              "lon",
+              "lat",
+              "recovery_pct_2024_25"
+            ]
           }
         }
       ],
@@ -80,7 +113,7 @@
               800
             ],
             "range": [
-              150,
+              0,
               3200
             ]
           },
@@ -101,9 +134,9 @@
               110
             ],
             "range": [
-              "#9b2c1f",
+              "#b35806",
               "#f2f2f2",
-              "#2a6fb0"
+              "#2166ac"
             ],
             "interpolate": "lab",
             "clamp": true
@@ -145,7 +178,10 @@
     {
       "data": {
         "url": "data/australia_states.json",
-        "format": { "type": "topojson", "feature": "states" }
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
       },
       "transform": [
         {
@@ -153,15 +189,30 @@
           "from": {
             "data": {
               "url": "data/map_state_2021.csv",
-              "format": { "type": "csv", "parse": { "ste_code": "number" } }
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "ste_code": "number"
+                }
+              }
             },
             "key": "ste_code",
-            "fields": ["state"]
+            "fields": [
+              "state"
+            ]
           }
         },
-        { "filter": "focusState !== 'ALL' && datum.state === focusState" }
+        {
+          "filter": "focusState !== 'ALL' && datum.state === focusState"
+        }
       ],
-      "mark": { "type": "geoshape", "fill": "#83c8bf", "stroke": "#1b2a38", "strokeWidth": 2.5, "opacity": 0.24 }
+      "mark": {
+        "type": "geoshape",
+        "fill": "#83c8bf",
+        "stroke": "#1b2a38",
+        "strokeWidth": 2.5,
+        "opacity": 0.24
+      }
     },
     {
       "data": {
@@ -198,5 +249,9 @@
         }
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }
