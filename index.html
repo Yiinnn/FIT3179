@@ -44,8 +44,8 @@
   </nav>
 
   <main class="wrap">
-    <div class="text story-intro"><p>Public transport use collapsed in 2020.</p><p>This page shows how far it has come back.</p><p>It compares cities, modes and daily commutes.</p><details><summary>Read more</summary><p>Australia has eight capital city networks.</p><p>Each lost riders during COVID lockdowns.</p><p>Some recovered quickly. Others are catching up.</p><p>The page uses two kinds of data.</p><p>BITRE counts trips across a whole year.</p><p>The Census records one travel day.</p><p>Each source answers a different question.</p><p>Explore the maps first.</p><p>Then follow the pandemic shock.</p><p>Finish with commuting choices today.</p></details></div>
-    <aside class="timing-note" aria-label="Important data context"><span class="timing-tag">Reading the dates</span><div><p>The Census records one day: 10 August 2021.</p><p>COVID restrictions applied in several cities then.</p><details><summary>Read more</summary><p>Work from home was unusually high that day.</p><p>Public transport use was unusually low.</p><p>This is a pandemic snapshot, not normal life.</p><p>BITRE figures run through 2024–25.</p><p>They show the recovery that followed.</p><p>Comparing both sources needs care.</p><p>Treat links as patterns, not causes.</p></details></div></aside>
+    <div class="text story-intro"><p>Public transport use collapsed in 2020.</p><p>This page shows how far it has come back.</p><p>It compares cities, modes and daily commutes.</p></div>
+    <aside class="timing-note" aria-label="Important data context"><span class="timing-tag">Reading the dates</span><div><p>The Census records one day: 10 August 2021.</p><p>COVID restrictions applied in several cities then.</p></div></aside>
     <div class="story-stats" aria-label="Story at a glance">
       <div><strong>8</strong><span>capital city networks</span></div>
       <div><strong>5</strong><span>decades of patronage</span></div>
@@ -53,7 +53,7 @@
     </div>
 
     <section class="map-explorer" id="maps">
-      <h2>Explore the Maps</h2><div class="text"><p>Start with city patronage.</p><p>Then compare work travel across states.</p><p>Choose a state to highlight it on all maps.</p><p>Choose All states to reset the view.</p><details><summary>Read more</summary><p>The maps answer three questions.</p><p>Which cities regained their riders?</p><p>Where do people commute by public transport?</p><p>How does that compare with working from home?</p><p>Use the dropdown to focus on one state.</p><p>Other states fade into the background.</p><p>This helps reveal small local patterns.</p></details></div><div class="map-controls">
+      <h2>Explore the Maps</h2><div class="text"><p>Start with city patronage.</p><p>Then compare work travel across states.</p><p>Choose a state to highlight it on all maps.</p><p>Choose All states to reset the view.</p></div><div class="map-controls">
         <label for="map-state-focus">Highlight a state</label>
         <select id="map-state-focus">
           <option value="ALL">All states</option>
@@ -71,7 +71,7 @@
 
     <section class="viz-section map-story">
       <h3>Perth and Brisbane have passed pre-pandemic levels</h3>
-      <div class="text"><p>Each circle represents a capital city.</p><p>Size shows trips in 2024–25.</p><p>Colour compares recovery with 2018–19.</p><ul><li>Perth leads at 105.1% of its baseline.</li><li>Brisbane follows at 100.2%.</li><li>Canberra is close behind at 99.6%.</li><li>Adelaide is 91.4%; Sydney is 90.8%.</li><li>Darwin is 83.1%; Hobart is 82.6%.</li><li>Melbourne is lowest at 82.0%.</li></ul><details><summary>Read more</summary><p>Sydney has the largest circle.</p><p>It has the most annual trips.</p><p>Melbourne has the second largest.</p><p>Large circles do not mean fast recovery.</p><p>Sydney remains about 9% below baseline.</p><p>Use the mode menu to compare networks.</p><p>Choose heavy rail, bus, light rail or ferry.</p><p>Not every city runs every mode.</p></details></div>
+      <div class="text"><p>Each circle represents a capital city.</p><p>Size shows trips in 2024–25.</p><p>Colour compares recovery with 2018–19.</p><ul><li>Perth leads at 105.1% of its baseline.</li><li>Brisbane follows at 100.2%.</li><li>Canberra is close behind at 99.6%.</li><li>Adelaide is 91.4%; Sydney is 90.8%.</li><li>Darwin is 83.1%; Hobart is 82.6%.</li><li>Melbourne is lowest at 82.0%.</li></ul></div>
       <div class="map-controls map-mode-controls">
         <label for="map-mode-focus">Show trips for</label>
         <select id="map-mode-focus">
@@ -87,35 +87,35 @@
 
     <section class="viz-section map-story">
       <h3>Public transport commuting varies between local areas</h3>
-      <div class="text"><p>Each area shows workers using public transport only.</p><p>Darker areas have a higher share.</p><p>The scale runs from 0% to 25%.</p><ul><li>The map covers 2,450 local areas.</li><li>Most areas use the lightest shades.</li><li>Highest shares cluster around capital cities.</li><li>Rural and outback shares are very low.</li></ul><details><summary>Read more</summary><p>This map uses the 2021 Census.</p><p>It counts people reporting one mode only.</p><p>Train, bus, ferry and tram all count.</p><p>People listing several methods are excluded.</p><p>Total public transport use is therefore higher.</p><p>Local areas vary greatly in size.</p><p>Large rural areas hold relatively few workers.</p><p>Use the state selector to focus the map.</p></details></div>
+      <div class="text"><p>Each area shows workers using public transport only.</p><p>Darker areas have a higher share.</p><p>The scale runs from 0% to 25%.</p><ul><li>The map covers 2,450 local areas.</li><li>Most areas use the lightest shades.</li><li>Highest shares cluster around capital cities.</li><li>Rural and outback shares are very low.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart10"></div><figcaption>Source: ABS 2021 Census, General Community Profile, Table G62. Absolute shares of employed people (%), using one public transport mode only. Multiple methods are excluded. Census day: 10 August 2021. <a href="https://www.abs.gov.au/census/find-census-data/datapacks?geography=SA2&amp;product=GCP&amp;release=2021">Census data</a> · <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files">SA2 boundaries</a>.</figcaption></figure>
     </section>
 
     <section class="viz-section map-story">
       <h3>More public transport commuters does not always mean more working from home</h3>
-      <div class="text"><p>Each state combines two employment shares.</p><p>Darker tones mean higher values on both.</p><p>Hover for exact shares.</p><ul><li>Public transport groups: under 3%, 3–under 5%, 5%+.</li><li>Work from home groups: under 15%, 15–under 25%, 25%+.</li><li>WA leads public transport, at about 7%.</li><li>NSW leads work from home, at about 31%.</li><li>NT is low on both: about 3% and 4%.</li></ul><details><summary>Read more</summary><p>Each measure uses three groups.</p><p>Together they create nine colour combinations.</p><p>The grid shows how the scales combine.</p><p>Groups compare states with each other.</p><p>They are not fixed targets.</p><p>Top-group means high relative to other states.</p></details></div>
+      <div class="text"><p>Each state combines two employment shares.</p><p>Darker tones mean higher values on both.</p><p>Hover for exact shares.</p><ul><li>Public transport groups: under 3%, 3–under 5%, 5%+.</li><li>Work from home groups: under 15%, 15–under 25%, 25%+.</li><li>WA leads public transport, at about 7%.</li><li>NSW leads work from home, at about 31%.</li><li>NT is low on both: about 3% and 4%.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart11"></div><figcaption>Source: ABS 2021 Census, Transport data summary, Table 3. Groups compare states with one another, not fixed targets. Hover for exact values. State boundaries: ABS.</figcaption></figure>
     </section>
 
     <section class="viz-section" id="recovery">
       <h2>The pandemic shock and return of riders</h2>
-      <div class="text"><p>Every city fell in 2020–21.</p><p>Melbourne fell furthest, to 35.</p><p>A value of 100 matches 2018–19.</p><ul><li>Sydney, Brisbane and Canberra fell lowest later.</li><li>Their lows were 43, 58 and 60.</li><li>By 2024–25 Perth reached 105.</li><li>Brisbane reached 100; Canberra reached 100.</li><li>Melbourne remained at 82.</li></ul><details><summary>Read more</summary><p>Before 2020, trips stayed fairly steady.</p><p>Most cities ranged between 85 and 105.</p><p>Lockdowns then cut ridership everywhere.</p><p>Melbourne recorded the deepest fall.</p><p>The pattern does not prove a cause.</p><p>Recovery then split the cities.</p><p>Perth never fell below 72.</p><p>It returned to 100 first.</p><p>Melbourne and Darwin remain below 100.</p></details></div>
+      <div class="text"><p>Every city fell in 2020–21.</p><p>Melbourne fell furthest, to 35.</p><p>A value of 100 matches 2018–19.</p><ul><li>Sydney, Brisbane and Canberra fell lowest later.</li><li>Their lows were 43, 58 and 60.</li><li>By 2024–25 Perth reached 105.</li><li>Brisbane reached 100; Canberra reached 100.</li><li>Melbourne remained at 82.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart1"></div><figcaption>Source: BITRE Yearbook 2025, Table 2.5. Estimates use transit authority reports. Values are rounded.</figcaption></figure>
     </section>
 
     <section class="viz-section">
       <h2>Which cities recovered first?</h2>
-      <div class="text"><p>Each year ranks the eight cities.</p><p>Rank 1 is closest to baseline.</p><p>Lines moving up show cities catching up.</p><ul><li>Perth reaches rank 1 by 2023–24.</li><li>Brisbane climbs to rank 2 by 2024–25.</li><li>Melbourne finishes last.</li></ul><details><summary>Read more</summary><p>A bump chart shows order, not size.</p><p>Close ranks may hide large trip gaps.</p><p>Use the heatmap to compare those gaps.</p><p>The 2018–19 baseline equals 100 for all.</p><p>That baseline year is hidden here.</p><p>Earlier ranks need careful interpretation.</p></details></div>
+      <div class="text"><p>Each year ranks the eight cities.</p><p>Rank 1 is closest to baseline.</p><p>Lines moving up show cities catching up.</p><ul><li>Perth reaches rank 1 by 2023–24.</li><li>Brisbane climbs to rank 2 by 2024–25.</li><li>Melbourne finishes last.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart12"></div><figcaption>Source: BITRE Yearbook 2025, Table 2.5. Rank compares trips with 2018–19.</figcaption></figure>
     </section>
 
     <section class="viz-section">
       <h2>Five decades of growth, one sharp pandemic dip</h2>
-      <div class="text"><p>Each band represents one transport mode.</p><p>Thickness shows annual trips, in millions.</p><p>The dashed line marks the lockdown period.</p><ul><li>Trips grew toward a 2019 peak.</li><li>That peak was just under 1,800 million.</li><li>Trips halved across 2020–21 and 2021–22.</li><li>In 2025, rail reached 682m; bus 670m.</li><li>Light rail reached 220m; ferry 28m.</li></ul><details><summary>Read more</summary><p>The long view shows an unusual decline.</p><p>Growth had been steady for decades.</p><p>Heavy rail and bus carry most trips.</p><p>Light rail and ferry are smaller.</p><p>Ferry is difficult to see clearly.</p><p>Use the legend to identify each band.</p><p>By 2025, total trips neared 1,600 million.</p><p>That remains below the 2019 peak.</p></details></div>
+      <div class="text"><p>Each band represents one transport mode.</p><p>Thickness shows annual trips, in millions.</p><p>The dashed line marks the lockdown period.</p><ul><li>Trips grew toward a 2019 peak.</li><li>That peak was just under 1,800 million.</li><li>Trips halved across 2020–21 and 2021–22.</li><li>In 2025, rail reached 682m; bus 670m.</li><li>Light rail reached 220m; ferry 28m.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart3"></div><figcaption>Source: BITRE Yearbook 2025, Table 2.5. Bands are centred; read thickness, not height. Values are annual trips across eight capital networks.</figcaption></figure>
     </section>
@@ -124,34 +124,34 @@
 
     <section class="viz-section" id="commuting">
       <h2>Car commuting in capital cities and regional areas</h2>
-      <div class="text"><p>Each row compares city and regional drivers.</p><p>Dots show each share.</p><p>The line shows the difference.</p><ul><li>The NT is the only reverse pattern.</li><li>About 69% drive in Darwin, 54% regionally.</li><li>NSW has the largest gap the other way.</li><li>About 35% drive in Sydney, 61% regionally.</li><li>WA is near even, at about 63%.</li></ul><details><summary>Read more</summary><p>Most states have fewer capital city drivers.</p><p>Other commute choices fill part of the gap.</p><p>Regional areas often offer fewer options.</p><p>Darwin is different.</p><p>Its public transport share is lowest.</p></details></div>
+      <div class="text"><p>Each row compares city and regional drivers.</p><p>Dots show each share.</p><p>The line shows the difference.</p><ul><li>The NT is the only reverse pattern.</li><li>About 69% drive in Darwin, 54% regionally.</li><li>NSW has the largest gap the other way.</li><li>About 35% drive in Sydney, 61% regionally.</li><li>WA is near even, at about 63%.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart13"></div><figcaption>Source: ABS journey-to-work data, 2021. Share of employed people. The horizontal axis starts at 30%; the ACT has no regional area.</figcaption></figure>
     </section>
 
     <section class="viz-section">
       <h2>Do commuting habits align with city recovery?</h2>
-      <div class="text"><p>Lines link commute and recovery ranks.</p><p>Rank 1 is highest on each measure.</p><p>Crossings show where ranks differ.</p><ul><li>Perth ranks first on both measures.</li><li>Darwin and Hobart are near the bottom.</li><li>Brisbane ranks fifth for commuting, second for recovery.</li><li>Melbourne ranks fourth for commuting, last for recovery.</li></ul><details><summary>Read more</summary><p>Higher commute shares often align with recovery.</p><p>Perth, Canberra and Adelaide rank high.</p><p>Darwin and Hobart rank near the bottom.</p><p>Brisbane recovered more than its commute rank suggests.</p><p>Melbourne recovered less.</p><p>Lockdown length may help explain Melbourne.</p><p>The data cannot prove this explanation.</p></details></div>
+      <div class="text"><p>Lines link commute and recovery ranks.</p><p>Rank 1 is highest on each measure.</p><p>Crossings show where ranks differ.</p><ul><li>Perth ranks first on both measures.</li><li>Darwin and Hobart are near the bottom.</li><li>Brisbane ranks fifth for commuting, second for recovery.</li><li>Melbourne ranks fourth for commuting, last for recovery.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart4"></div><figcaption>Sources: BITRE Yearbook 2025, Table 2.5; ABS 2021 Census. State commute shares and city-network recovery cover different years and geographies. Ranks descend from highest values.</figcaption></figure>
     </section>
 
     <section class="viz-section">
       <h2>The modes behind city travel</h2>
-      <div class="text"><p>Each block shows one mode in one city.</p><p>Larger blocks mean more 2025 trips.</p><p>Hover to see exact values.</p><ul><li>Sydney carries 44.3% of total trips.</li><li>Melbourne carries 30.0%.</li><li>Brisbane has 10.1%; Perth has 9.3%.</li><li>Adelaide has 4.3%.</li><li>Sydney and Melbourne together carry 74.3%.</li></ul><details><summary>Read more</summary><p>Sydney uses heavy rail and bus most.</p><p>They carry 349m and 293m trips.</p><p>Melbourne mixes rail, tram and bus.</p><p>Those modes carry 202m, 160m and 118m.</p><p>Melbourne is the strongest light-rail city.</p><p>Brisbane and Perth rely mostly on buses.</p><p>Brisbane bus trips total 99m.</p><p>Perth bus trips total 86m.</p><p>Smaller cities have tiny blocks.</p><p>Hover to read their values.</p></details></div>
+      <div class="text"><p>Each block shows one mode in one city.</p><p>Larger blocks mean more 2025 trips.</p><p>Hover to see exact values.</p><ul><li>Sydney carries 44.3% of total trips.</li><li>Melbourne carries 30.0%.</li><li>Brisbane has 10.1%; Perth has 9.3%.</li><li>Adelaide has 4.3%.</li><li>Sydney and Melbourne together carry 74.3%.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart5"></div><figcaption>Source: BITRE Yearbook 2025, Table 2.5. City shares are percentages of trips across eight capital networks.</figcaption></figure>
     </section>
 
     <section class="viz-section">
       <h2>How Australians travel to work across states</h2>
-      <div class="text"><p>Each panel shows one travel mode.</p><p>Bars show employed people’s shares.</p><p>Each panel has its own scale.</p><ul><li>Car use ranges from 47% in NSW.</li><li>It reaches about 71% in the NT.</li><li>Public transport peaks in WA, near 7%.</li><li>NT walking and cycling reach about 10%.</li><li>NSW work from home reaches about 31%.</li><li>NT work from home is about 4%.</li></ul><details><summary>Read more</summary><p>The four panels show different patterns.</p><p>Car commuting is high and fairly even.</p><p>Public transport remains a small share.</p><p>Work from home varies the most.</p><p>Victoria and NSW stand out.</p><p>Both had restrictions around Census day.</p><p>That likely raised work-from-home shares.</p></details></div>
+      <div class="text"><p>Each panel shows one travel mode.</p><p>Bars show employed people’s shares.</p><p>Each panel has its own scale.</p><ul><li>Car use ranges from 47% in NSW.</li><li>It reaches about 71% in the NT.</li><li>Public transport peaks in WA, near 7%.</li><li>NT walking and cycling reach about 10%.</li><li>NSW work from home reaches about 31%.</li><li>NT work from home is about 4%.</li></ul></div>
       
       <figure class="chart-card"><div class="chart-container" id="chart6"></div><figcaption>Source: ABS 2021 Census, Transport data summary, Table 3. Shares are of employed people. Each mode uses a separate scale.</figcaption></figure>
     </section>
 
 
-    <section class="about-me" id="about-me"><h2>About me</h2><p>Wan Sam Yin · FIT3179 Data Visualisation 2</p><p>Monash University · Student ID: 33524785</p><p>Studio group: Friday, 2–4pm.</p><p>Public transport is part of daily life.</p><p>The pandemic changed how people travel.</p><p><details><summary>Read more</summary><p><strong>What I wanted to show</strong></p><p>How public transport use fell and recovered.</p><p>How patterns differ across cities and states.</p><p><strong>What I learned</strong></p><p>Comparing sources from different years needs care.</p><p>Ranks can hide the size of gaps.</p><p>The heatmap adds that missing context.</p><p>Clear legends and short titles help readers.</p><p><strong>Tools</strong></p><p>Vega-Lite, JavaScript, HTML and CSS.</p><p>GitHub stores and shares the project.</p></details></section>
+    <section class="about-me" id="about-me"><h2>About me</h2><p>Wan Sam Yin · FIT3179 Data Visualisation 2</p><p>Monash University · Student ID: 33524785</p><p>Studio group: Friday, 2–4pm.</p><p>Public transport is part of daily life.</p><p>The pandemic changed how people travel.</p></section>
     </main>
 
   <footer>
